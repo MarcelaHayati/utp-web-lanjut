@@ -5,21 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use Illuminate\View\View;
+use PHPUnit\Framework\Constraint\Count;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+
 class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index()
     {
-        $courses = Course::all();
+        $courses = Course::all(); 
         return view('courses.index')->with('courses', $courses);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create()
     {
         return view('courses.create');
     }
@@ -31,7 +35,7 @@ class CourseController extends Controller
     {
         $input = $request->all();
         Course::create($input);
-        return redirect('courses')->with('flsh_message', 'Course Added!');
+        return redirect('courses')->with('flash_message', 'Course Addedd!');
     }
 
     /**
@@ -69,6 +73,6 @@ class CourseController extends Controller
     public function destroy(string $id)
     {
         Course::destroy($id);
-        return redirect('courses')->with('flash_message', 'Course deleted!');
+        return redirect('courses')->with('flash_message', 'course deleted!'); 
     }
 }
